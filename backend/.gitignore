@@ -22,7 +22,7 @@
 /public/assets
 .byebug_history
 /config/database.yml
-.idea/
+/.idea/*
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
