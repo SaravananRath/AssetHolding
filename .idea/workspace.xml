@@ -2,19 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb2310e1-fe20-48ca-8976-7b7454351666" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/Hr.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/HrAddAssetForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/LoginCard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/LoginForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/EmployeeReqAssetForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Hr.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Hr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/container/Hr_Container.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/container/Hr_Container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/container/Login_Container.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/container/Login_Container.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/assets/javascripts/employee.coffee" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/assets/javascripts/error.coffee" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/assets/javascripts/hr.coffee" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/assets/stylesheets/employee.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/assets/stylesheets/error.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/assets/stylesheets/hr.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/controllers/employee_controller.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/controllers/error_controller.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/controllers/hr_controller.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/helpers/employee_helper.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/helpers/error_helper.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/helpers/hr_helper.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/services/generic_service.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/db/migrate/20180705063003_add_status_column_to_user.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/lib/tasks/setup.rake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/test/controllers/employee_controller_test.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/test/controllers/error_controller_test.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/test/controllers/hr_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/asset_handle.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/controllers/authentication_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/controllers/authentication_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/controllers/home_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/controllers/home_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/models/user_asset.rb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/user_asset.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/application.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/environments/development.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/initializers/constants.rb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/initializers/constants.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db/seeds.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,14 +48,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Hr.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Hr.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/component/Hr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="41" column="21" lean-forward="true" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+            <state relative-caret-position="315">
+              <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="frontend.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/.idea/frontend.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
             </state>
           </provider>
         </entry>
@@ -41,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/frontend/src/component/HrAddAssetForm.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="3" column="32" lean-forward="true" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+              <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -53,7 +90,7 @@
         <entry file="file://$PROJECT_DIR$/frontend/src/component/Hr.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -74,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/frontend/src/component/Login.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="11" column="30" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="11" selection-end-column="30" />
+              <caret line="11" column="30" selection-start-line="7" selection-start-column="3" selection-end-line="11" selection-end-column="30" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -128,6 +165,7 @@
         <option value="$PROJECT_DIR$/frontend/src/component/LoginForm.js" />
         <option value="$PROJECT_DIR$/frontend/src/component/Hr.css" />
         <option value="$PROJECT_DIR$/frontend/src/component/Hr.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -170,40 +208,6 @@
               <item name="Asset_Handling" type="462c0819:PsiDirectoryNode" />
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Asset_Handling" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asset_Handling" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asset_Handling" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asset_Handling" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="action" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asset_Handling" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asset_Handling" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asset_Handling" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asset_Handling" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Asset_Handling" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Asset_Handling" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="reducer" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -245,12 +249,12 @@
       <workItem from="1530714229569" duration="369000" />
       <workItem from="1530714599993" duration="2180000" />
       <workItem from="1530767245379" duration="11926000" />
-      <workItem from="1530781433875" duration="2989000" />
+      <workItem from="1530781433875" duration="3534000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20238000" />
+    <option name="totallyTimeSpent" value="20783000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
@@ -483,7 +487,7 @@
     <entry file="file://$PROJECT_DIR$/frontend/src/component/Login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="30" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="11" selection-end-column="30" />
+          <caret line="11" column="30" selection-start-line="7" selection-start-column="3" selection-end-line="11" selection-end-column="30" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -503,14 +507,14 @@
     <entry file="file://$PROJECT_DIR$/frontend/src/component/Hr.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/component/HrAddAssetForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="3" column="32" lean-forward="true" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+          <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
@@ -519,11 +523,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/component/Hr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="41" column="21" lean-forward="true" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+        <state relative-caret-position="315">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/.idea/frontend.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>

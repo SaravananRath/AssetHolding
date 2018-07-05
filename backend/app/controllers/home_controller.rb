@@ -1,7 +1,11 @@
 class HomeController < ApplicationController
   before_action :authenticate_request!
 
-  def index
-    render json: {'logged_in' => true}
+  def info
+    render json: {
+        'name': current_user.name,
+        'email': current_user.email
+    }
   end
+
 end
