@@ -1,5 +1,4 @@
 class AuthenticationController < ApplicationController
-  protect_from_forgery with: :null_session
 
   def authenticate_user
     if params[:username].present?

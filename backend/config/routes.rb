@@ -4,18 +4,22 @@ Rails.application.routes.draw do
 
   post 'auth_user' => 'authentication#authenticate_user'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  scope :hr do
-    get 'dashboard' => 'hr#dashboard'
-  end
+  scope :api, defaults: {format: :json} do
+    scope :hr do
+      get 'dashboard' => 'hr#dashboard'
+      post 'create_company_asset' => 'hr#create_company_asset'
+      patch 'update_company_asset' => 'hr#update_company_asset'
+    end
 
-  scope :employee do
-    get 'dashboard' => 'employee#dashboard'
+    scope :employee do
+      get 'dashboard' => 'employee#dashboard'
+      post 'request_asset' => 'employee#request_asset'
+    end
+    get 'info' => 'api#info'
+    # resources :user_assets
+    # resources :users
+    # resources :company_assets
   end
-
-  get 'info' => 'home#info'
   get "/404" => "error#not_found"
   get "/500" => "error#exception"
-  # resources :user_assets
-    # resources :users
-  # resources :company_assets
 end
