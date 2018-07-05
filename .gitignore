@@ -8,21 +8,21 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
+backend/log/*
+backend/tmp/*
 !/log/.keep
 !/tmp/.keep
 
 # Ignore uploaded files in development
 /storage/*
 
-/node_modules
+frontend/node_modules
 /yarn-error.log
 
-/public/assets
-.byebug_history
-/config/database.yml
-/.idea/*
+backend/public/assets
+backend/.byebug_history
+backend/config/database.yml
+.idea/*
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
+backend/config/master.key
