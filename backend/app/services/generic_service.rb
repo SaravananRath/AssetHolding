@@ -8,7 +8,7 @@ class GenericService
     @user.user_assets.each do |asset|
       asset_json = {
           "id" => asset.id,
-          "name" => asset.asset_name,
+          "name" => asset.name,
           "count" => asset.count,
           "status" => asset.status,
           "returned" => asset.returned

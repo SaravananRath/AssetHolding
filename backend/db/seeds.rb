@@ -8,7 +8,7 @@ CompanyAsset.create(company_asset_array)
 puts('Company Asset seed completed')
 
 employee = User.find_by(:email=>'employee@sample.com')
-employee_asset_array = [{asset_name: 'Monitor', count: 1, status: 1, returned: false},
-                        {asset_name: 'Mouse', count: 1, status: 1, returned: false}]
+employee_asset_array = [{name: 'Monitor', count: 1, status: 1, returned: false},
+                        {name: 'Mouse', count: 1, status: 1, returned: false}]
 employee.user_assets.create(employee_asset_array)
 puts('Employee Asset seed completed')
