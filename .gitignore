@@ -25,4 +25,8 @@ backend/config/database.yml
 .idea/*
 
 # Ignore master key for decrypting credentials and more.
+/config/master.key
+
+#Ignore the database file
+/config/database.yml
 backend/config/master.key
