@@ -1,40 +1,33 @@
 import React,{Component} from 'react';
+import SimpleMediaCard from './LoginCard'
 
+const backGround ={
+    backgroundColor:'black'
+}
+const divStyle = {
+    position: 'absolute',
+    top: '50%',
+    left:' 50%',
+    transform: 'translateX(-50%) translateY(-50%)',
+    border: '1px solid black',
+}
     class Login extends Component{
-        componentDidMount(){
+
+        submit = (values) => {
+            console.log(values);
+        }
+            componentDidMount(){
             this.props.getLogin()
         }
         render(){
-            // let name
-            // let pass
             return(
-                <div>
-                <h1>Login </h1>
-                    <h2>{"Data from the store: "+this.props.login}</h2>
-
-                    {/*<form onSubmit={e => {*/}
-                        {/*e.preventDefault()*/}
-                        {/*if (!name.value.trim() || !pass.value.trim()) {*/}
-                            {/*return*/}
-                        {/*}*/}
-                        {/*alert('Name: '+name.value+' '+'Pass:'+pass.value)*/}
-
-                        {/*// dispatch(addTodo(input.value))*/}
-                        {/*name.value = ''*/}
-                        {/*pass.value = ''*/}
-                    {/*}}>*/}
-                        {/*<label htmlFor="">Name*/}
-                            {/*<input ref={node => name = node} />*/}
-                        {/*</label>*/}
-                        {/*<br/>*/}
-                        {/*<label htmlFor="">Password*/}
-                            {/*<input ref={node => pass = node} />*/}
-                        {/*</label>*/}
-
-                        {/*<button type="submit">*/}
-                            {/*Login*/}
-                        {/*</button>*/}
-                    {/*</form>*/}
+                <div style={backGround}>
+                    {/*<h1>Login</h1>*/}
+                    {/*<h2>{"Data from the store: "+this.props.login}</h2>*/}
+                    {/*<LoginForm onSubmit={this.submit}/>*/}
+                    <div style={divStyle}>
+                    <SimpleMediaCard handleSubmit={this.submit}/>
+                    </div>
                 </div>
             )
         }

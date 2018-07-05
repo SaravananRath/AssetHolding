@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 const mapStatetoProps = (state) => {
     return{
-        login: state.login
+        login: state.toggle_reducer.login
     }
 }
 const mapDispathtoProps = (dispatch) => {

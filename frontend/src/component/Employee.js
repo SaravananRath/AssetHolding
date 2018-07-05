@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Modal from 'react-modal'
-import ContactForm from './Form'
+import ContactForm from './EmployeeReqAssetForm'
 const customStyles = {
     content : {
         top                   : '50%',
@@ -31,7 +31,7 @@ class Employee extends Component{
                 <h2>{"Data from the store: "+this.props.employee}</h2>
 
                 <div>
-                    <button onClick={this.props.toggleModal}>Open Modal</button>
+                    <button onClick={this.props.toggleModal}>Request Asset</button>
                     <Modal
                         isOpen={this.props.open}
                         onAfterOpen={this.afterOpenModal}
