@@ -1,8 +1,9 @@
 class EmployeeController < ApplicationController
   before_action :authenticate_request!
 
-  def index
-    render json: {"employee_logged_in" => true}
+  def dashboard
+    assets = GenericService.new({:user=> current_user}).user_assets
+    render json: {"assets" => assets}
   end
 
 end

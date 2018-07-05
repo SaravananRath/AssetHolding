@@ -1,8 +1,9 @@
 class HrController < ApplicationController
   before_action :authenticate_request!
 
-  def index
-    render json: {"hr_logged_in" => true}
+  def dashboard
+    company_assets = GenericService.new({}).get_company_assets
+    render json: {"assets" => company_assets}
   end
 
 end
