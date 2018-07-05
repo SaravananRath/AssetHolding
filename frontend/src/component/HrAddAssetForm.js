@@ -23,6 +23,7 @@ const renderAssets = ({fields}) => (
 
 
                     <h4>Asset {index+1}</h4>
+                    <button type='button' onClick={()=>fields.remove(index)}> Remove Asset</button>
                     <Field
                         name={`${asset}.name`}
                         type="text"
@@ -35,7 +36,7 @@ const renderAssets = ({fields}) => (
                         component={renderField}
                         label="Asset Count"
                     />
-                    <button type='button' onClick={()=>fields.remove(index)}> Remove Asset</button>
+
                 </li>
             ))
         }

@@ -16,14 +16,14 @@ let LoginForm = (props) =>{
     return(
         <form onSubmit={handleSubmit}>
             <div>
-                <Field name='username' type='text'
+                <Field name='email' type='email'
                        component={({input}) =>
                            <TextField
                                value={input.value}
                                onChange={input.onChange}
                                fullWidth
-                               autoComplete='off'
-                               label='Username'
+                               autoComplete='on'
+                               label='Email'
                            />
                        } />
             </div>
@@ -35,7 +35,7 @@ let LoginForm = (props) =>{
                                value={input.value}
                                onChange={input.onChange}
                                fullWidth
-                               autoComplete='off'
+                               autoComplete='on'
                                label='Password'
                                type='password'
                            />

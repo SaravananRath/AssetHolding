@@ -1,5 +1,5 @@
 import Login from '../component/Login'
-import { login } from "../action/Action";
+import { apiCall } from "../action/Action";
 import { connect } from 'react-redux'
 
 const mapStatetoProps = (state) => {
@@ -9,7 +9,7 @@ const mapStatetoProps = (state) => {
 }
 const mapDispathtoProps = (dispatch) => {
     return{
-        getLogin: () => dispatch(login())
+        apiCall: (user) => dispatch(apiCall(user))
     }
 }
 

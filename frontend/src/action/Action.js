@@ -1,3 +1,7 @@
+import axios from 'axios'
+
+
+
 export function hr() {
     return{
         type:'SHOW_HR'
@@ -10,9 +14,29 @@ export function employee(){
     }
 }
 
-export function login(){
+
+export function apiCall(user){
+    return(dispatch) => {
+        axios.post('http://localhost:3001/auth_user',
+            {
+
+                    email: user.email,
+                    password: user.password
+            })
+            .then(response => {
+                console.log(response.data);
+                return (dispatch(apiSuccess(response.data.results)))
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
+}
+
+export function apiSuccess(){
     return{
-        type:'SHOW_LOGIN'
+        type:'API_CALL'
     }
 }
 

@@ -15,10 +15,11 @@ const divStyle = {
 
         submit = (values) => {
             console.log(values);
+            this.props.apiCall(values);
         }
-            componentDidMount(){
-            this.props.getLogin()
-        }
+        //     componentDidMount(){
+        //     this.props.getLogin()
+        // }
         render(){
             return(
                 <div style={backGround}>
