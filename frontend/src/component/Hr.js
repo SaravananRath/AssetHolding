@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Modal from 'react-modal'
 import HrAddAssetForm from './HrAddAssetForm'
 import './Hr.css'
+import SimpleTable from './Table'
 const customStyles = {
     content : {
         top                   : '50%',
@@ -43,6 +44,7 @@ class Hr extends Component{
                         <HrAddAssetForm onSubmit={this.submit}/>
 
                     </Modal>
+                   {/*< SimpleTable/>*/}
                 </div>
             </div>
         )

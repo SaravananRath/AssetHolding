@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, FieldArray, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 
 let ContactForm = props => {
     const { handleSubmit } = props
