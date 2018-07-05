@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class ApiController < ApplicationController
   before_action :authenticate_request!
 
   def info
@@ -7,5 +7,4 @@ class HomeController < ApplicationController
         'email': current_user.email
     }
   end
-
 end

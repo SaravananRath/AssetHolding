@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_090020) do
+ActiveRecord::Schema.define(version: 2018_07_05_094913) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2018_07_05_090020) do
   create_table "user_assets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "count"
-    t.string "status"
+    t.string "status", default: "-1"
     t.boolean "returned", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
