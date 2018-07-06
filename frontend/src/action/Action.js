@@ -22,9 +22,9 @@ export function assetDataCall(){
         }
     })
         .then(response =>{
-            console.log(response.data)
+            console.log(response.data.assets)
             return(
-                dispatch(assetDataCallSuccess(response.data))
+                dispatch(assetDataCallSuccess(response.data.assets))
             )
         })
         .catch(function(error){

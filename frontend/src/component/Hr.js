@@ -47,16 +47,16 @@ class Hr extends Component{
                         <TableCell>Count</TableCell>
                     </TableRow>
                 </TableHead>
-                {/*<TableBody>*/}
-                    {/*{asset_prop.assets.map(n => {*/}
-                        {/*return (*/}
-                            {/*<TableRow key={`${n.name}`}>*/}
-                                {/*<TableCell>{n.name}</TableCell>*/}
-                                {/*<TableCell>{n.count}</TableCell>*/}
-                            {/*</TableRow>*/}
-                        {/*);*/}
-                    {/*})}*/}
-                {/*</TableBody>*/}
+                <TableBody>
+                    {asset_prop.map(n => {
+                        return (
+                            <TableRow key={`${n.name}`}>
+                                <TableCell>{n.name}</TableCell>
+                                <TableCell>{n.count}</TableCell>
+                            </TableRow>
+                        );
+                    })}
+                </TableBody>
             </Table>
         </Paper>
         )
