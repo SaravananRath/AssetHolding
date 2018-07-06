@@ -14,7 +14,9 @@ const divStyle = {
     class Login extends Component{
 
         submit = (values) => {
+            console.log(values)
             this.props.apiCall(values);
+
         }
         //     componentDidMount(){
         //     this.props.getLogin()
