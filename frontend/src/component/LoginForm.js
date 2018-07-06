@@ -24,6 +24,7 @@ let LoginForm = (props) =>{
                                fullWidth
                                autoComplete='on'
                                label='Email'
+                               type='email'
                            />
                        } />
             </div>

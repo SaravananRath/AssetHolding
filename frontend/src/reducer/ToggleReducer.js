@@ -2,7 +2,8 @@ const initialState = {
     employee: '',
     hr: '',
     login: '',
-    open: false
+    open: false,
+    assets: []
 }
 
 export const reducerFunc = (state=initialState, action) => {
@@ -23,6 +24,12 @@ export const reducerFunc = (state=initialState, action) => {
             return{
                 ...state,
                 open:!state.open
+            }
+        case 'ASSET_DATA_CALL':
+            return{
+                ...state,
+                assets:action.assets
+
             }
         default:
             return state
