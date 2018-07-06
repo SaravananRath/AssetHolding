@@ -1,8 +1,5 @@
 import axios from 'axios'
-import React from 'react'
-import { Redirect } from 'react-router-dom'
-import history from '../component/history'
-
+import { push } from 'react-router-redux'
 
 export function hr() {
     return{
@@ -53,7 +50,7 @@ export function apiCall(user){
                 console.log(response.data);
                 localStorage.setItem('auth_token',response.data.access_token)
                 localStorage.setItem('user_type',response.data.user_type)
-                history.push(`/${response.data.user_type}`)
+                dispatch(push(`/${response.data.user_type}`))
                 return (dispatch(apiSuccess(response.data.results)))
             })
             .catch(function (error) {
