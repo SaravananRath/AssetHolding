@@ -1,5 +1,5 @@
 import Hr from '../component/Hr'
-import { hr,toggleModal,assetDataCall } from "../action/Action";
+import { hr,toggleModal,assetDataCall,addAssetDataCall,pushToHome } from "../action/Action";
 import { connect } from 'react-redux'
 
 const mapStatetoProps = (state) => {
@@ -13,7 +13,9 @@ const mapDispathtoProps = (dispatch) => {
     return{
         getHr: () => dispatch(hr()),
         toggleModal: () => dispatch(toggleModal()),
-        assetDataCall: () =>dispatch(assetDataCall())
+        assetDataCall: () =>dispatch(assetDataCall()),
+        addAssetDataCall: (data) => dispatch(addAssetDataCall(data)),
+        pushToHome: ()=>dispatch(pushToHome())
     }
 }
 

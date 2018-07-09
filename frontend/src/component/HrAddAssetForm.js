@@ -1,45 +1,69 @@
 import React from 'react'
 import {Field,FieldArray,reduxForm} from 'redux-form'
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
+import TextField from '@material-ui/core/TextField'
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete'
+const renderTextField = ({input, label, type}) => (
+    <TextField
+        label={label}
+        type={type}
+        {...input}
+        fullWidth
+    />
+)
 
-const renderField = ({ input, label, type}) => (
-    <div>
-        {/*<label>{label}</label>*/}
-        <div>
-            <input {...input} type={type} placeholder={label} />
-        </div>
-    </div>
-);
-
+const buttonStyle ={
+    display:'block',
+    margin: '0 auto',
+    width:'105px',
+    // border: '1px solid black'
+}
+const addButton = {
+    marginTop:'20px'
+}
+const deleteButton = {
+    marginBottom:'20px'
+}
 const renderAssets = ({fields}) => (
     <ul>
-        <li>
-            <button type="button" onClick={()=>fields.push({})}>
-                Add Asset
-            </button>
-        </li>
+
+
         {
             fields.map((asset, index)=>(
-                <li key={index}>
+                <span key={index}>
 
 
-                    <h4>Asset {index+1}</h4>
-                    <button type='button' onClick={()=>fields.remove(index)}> Remove Asset</button>
+                    <h3>Asset {index+1}</h3>
+                    <div style={deleteButton}>
+                    <Button variant="fab" mini color="secondary" onClick={()=>fields.remove(index)}>
+                            <DeleteIcon />
+                    </Button>
+                    </div>
+                    {/*<button type='button' onClick={()=>fields.remove(index)}> Remove Asset</button>*/}
+
                     <Field
                         name={`${asset}.name`}
                         type="text"
-                        component={renderField}
+                        component={renderTextField}
                         label='Asset Name'
                     />
                     <Field
                         name={`${asset}.count`}
                         type="text"
-                        component={renderField}
+                        component={renderTextField}
                         label="Asset Count"
                     />
 
-                </li>
+                </span>
             ))
         }
+        <div style={addButton}>
+        <Button onClick={()=>fields.push({})}  variant="fab" mini color="primary" aria-label="add" >
+            <AddIcon />
+        </Button>
+        </div>
     </ul>
 )
 
@@ -48,7 +72,12 @@ let HrAddAssetForm = props => {
     return(
         <form onSubmit={handleSubmit}>
             <FieldArray name="assets" component={renderAssets}/>
-            <button type='submit'>Add Assets</button>
+            <div style={buttonStyle}>
+            <Button variant="contained" color="default" type='submit' >
+                <SaveIcon  />&nbsp;
+                Save
+            </Button>
+            </div>
         </form>
     )
 }

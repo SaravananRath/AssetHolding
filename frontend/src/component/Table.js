@@ -13,8 +13,8 @@ const SimpleTable = ({ values = { assets: [] } }) => (
         <Table>
             <TableHead>
                 <TableRow>
-                    <TableCell>Assets</TableCell>
-                    <TableCell>Count</TableCell>
+                    <TableCell><b>ASSETSsss</b></TableCell>
+                    <TableCell><b>COUNT</b></TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
