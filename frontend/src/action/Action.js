@@ -12,7 +12,37 @@ export function employee(){
         type:'SHOW_EMPLOYEE'
     }
 }
+
+export function updateAssetDataCall(data){
+    console.log(data)
+    return(dispatch) =>{
+        axios({
+            method:'patch',
+            headers: {Authorization:localStorage.getItem('auth_token')},
+            url:'http://localhost:3001/api/hr/update_company_asset',
+            data:{
+                'company_asset_params' : [data]
+            }
+        })
+            .then(response =>{
+                console.log(response)
+                dispatch(updateAssetDataCallSuccess(data))
+            })
+            .catch(function(error){
+                console.log(error)
+            })
+    }
+}
+
+export function updateAssetDataCallSuccess(data){
+    return{
+        type:'UPDATE_ASSET_DATA_SUCCESS',
+        id:data.id,
+        payload: {count: data.count}
+    }
+}
 export function addAssetDataCall(data){
+    console.log(data)
     return(dispatch) => {
         axios({
             method: 'post',
@@ -24,10 +54,10 @@ export function addAssetDataCall(data){
         })
             .then(response =>{
                 console.log(response)
-                dispatch(assetDataCall())
-                // return(
-                //     dispatch(addAssetDetailCallSuccess(response))
-                // )
+                dispatch(addAssetDetailCallSuccess(response.data.company_assets))
+                // dispatch(addAssetDetailCallSuccess(data))
+
+
             })
             .catch(function(error){
                 console.log(error)
@@ -35,9 +65,12 @@ export function addAssetDataCall(data){
     }
 }
 
-// export function addAssetDetailCallSuccess(){
-//     type:'ADD_ASSET_DATA_CALL_SUCCESS'
-// }
+export function addAssetDetailCallSuccess(data){
+    return {
+        type: 'ADD_ASSET_DATA_CALL_SUCCESS',
+        data
+    }
+}
 export function assetDataCall(){
     return(dispatch) => {
     axios.get('http://localhost:3001/api/hr/dashboard',{

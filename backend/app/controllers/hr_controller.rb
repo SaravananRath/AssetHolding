@@ -8,8 +8,8 @@ class HrController < ApplicationController
 
   def create_company_asset
     begin
-      CompanyAsset.create!(company_asset_params[:company_asset_params])
-      render json: {"asset" => "Company Assets Successfully created", "status" => 200}
+      company_assets = CompanyAsset.create!(company_asset_params[:company_asset_params])
+      render json: {"asset" => "Company Assets Successfully created", "status" => 200, "company_assets"=>company_assets}
     rescue
       render json: {"message" => "Unable to create company assets", "status" => 500}
     end

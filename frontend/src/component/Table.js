@@ -7,14 +7,17 @@ import TableBody from "@material-ui/core/TableBody"
 import Paper from "@material-ui/core/Paper";
 import { getFormValues } from "redux-form";
 import { connect } from "react-redux";
-
+import Button from "@material-ui/core/Button";
+import Edit from "@material-ui/icons/Edit"
 const SimpleTable = ({ values = { assets: [] } }) => (
     <Paper>
         <Table>
             <TableHead>
                 <TableRow>
-                    <TableCell><b>ASSETSsss</b></TableCell>
+                    <TableCell><b>ASSETS</b></TableCell>
                     <TableCell><b>COUNT</b></TableCell>
+                    <TableCell><b>UPDATE</b></TableCell>
+
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -23,6 +26,8 @@ const SimpleTable = ({ values = { assets: [] } }) => (
                         <TableRow key={`${n.name}`}>
                             <TableCell>{n.name}</TableCell>
                             <TableCell>{n.count}</TableCell>
+                            <TableCell><Button><Edit></Edit></Button></TableCell>
+
                         </TableRow>
                     );
                 })}

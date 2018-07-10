@@ -13,6 +13,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 // import CenteredGrid from './Grid.js';
 import Grid from '@material-ui/core/Grid';
 import MenuAppBar from './Header'
+import Edit from "@material-ui/icons/Edit"
 
 const divBody = {
     marginTop:' 20px'
@@ -68,6 +69,16 @@ class Hr extends Component{
         document.body.style.overflow = 'scroll';
         this.props.toggleModal();
     }
+    handleEdit=(n) =>{
+        console.log(n.id+n.name+n.count)
+
+        let data={
+            id:n.id,
+            name:n.name,
+            count:250
+        }
+        this.props.updateAssetDataCall(data)
+    }
     renderTable()  {
         let { asset_prop } = this.props;
         // if(asset_prop=== undefined){
@@ -80,6 +91,9 @@ class Hr extends Component{
                     <TableRow>
                         <TableCell><b>ASSETS</b></TableCell>
                         <TableCell><b>COUNT</b></TableCell>
+                        <TableCell></TableCell>
+
+
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -88,6 +102,8 @@ class Hr extends Component{
                             <TableRow key={`${n.name}`}>
                                 <TableCell>{n.name}</TableCell>
                                 <TableCell>{n.count}</TableCell>
+                                <TableCell><Button onClick={()=>this.handleEdit(n)}><Edit></Edit></Button></TableCell>
+
                             </TableRow>
                         );
                     })}
@@ -130,7 +146,7 @@ class Hr extends Component{
                         {/*xs, sm, md, lg, and xl.*/}
 
                     </Modal>
-                    <Grid item xs={12} sm={3} >
+                    <Grid item xs={12} sm={6} >
                     {this.renderTable()}
                     </Grid>
                 </div>
