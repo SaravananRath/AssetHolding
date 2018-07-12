@@ -19,7 +19,7 @@ export function getAssetDataFromPage(data){
     }
 }
 export function updateAssetDataCall(data){
-    // console.log(data)
+    console.log(data)
     return(dispatch) =>{
         axios({
             method:'patch',
@@ -30,7 +30,7 @@ export function updateAssetDataCall(data){
             }
         })
             .then(response =>{
-                // console.log(response)
+                console.log(response)
                 dispatch(updateAssetDataCallSuccess(data))
             })
             .catch(function(error){

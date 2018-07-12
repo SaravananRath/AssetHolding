@@ -11,6 +11,7 @@ import TableBody from "@material-ui/core/TableBody"
 import Paper from "@material-ui/core/Paper";
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Tooltip from '@material-ui/core/Tooltip'
 // import FilterSearch from './Autosuggest'
 // import CenteredGrid from './Grid.js';
 import Grid from '@material-ui/core/Grid';
@@ -55,6 +56,11 @@ class Hr extends Component{
         super(props)
         this.state={
             searchTerm:'',
+            clicked:false,
+            originalCount:'',
+            count:'',
+            id:'',
+            name:''
         }
     }
     handleChange=(e)=>{
@@ -64,6 +70,31 @@ class Hr extends Component{
         this.setState(state)
         this.props.filterData(this.state.searchTerm)
     }
+    handleFormFieldChange =(e)=>{
+        let state= this.state
+        state[e.target.name]=e.target.value
+        this.setState(state)
+    }
+    handleAssetSubmit=(e)=>{
+        e.preventDefault()
+        this.setState({clicked:!this.state.clicked})
+        let data={
+            id:this.state.id,
+            count:this.state.count,
+            name:this.state.name
+        }
+        if(this.state.count===''){
+            data={
+                id:this.state.id,
+                count:this.state.originalCount,
+                name:this.state.name
+            }
+        }
+        this.props.updateAssetDataCall(data)
+        }
+
+        // console.log(this.state.count)
+
     handleSubmit(e){
         e.preventDefault();
         console.log(this.state.searchTerm)
@@ -94,51 +125,55 @@ class Hr extends Component{
     }
     handleEdit=(n) =>{
         // console.log(n.id+n.name+n.count)
-        let data={
-            id:n.id,
-            name:n.name,
-            count:100
-        }
-        console.log(data)
-        this.props.updateAssetDataCall(data)
+        // let data={
+        //     id:n.id,
+        //     name:n.name,
+        //     count:100
+        // }
+        // console.log(data)
+        // this.props.updateAssetDataCall(data)
+        this.setState({clicked:!this.state.clicked})
+        this.setState({id:n.id})
+        this.setState({name:n.name})
+        this.setState({count:n.count})
+        this.setState({originalCount:n.count})
+
     }
-    renderTable()  {
-        let { asset_prop } = this.props;
-        let ArrayOfObj = asset_prop
-
-        if (!(Array.isArray(ArrayOfObj))){
-            ArrayOfObj = Object.values(asset_prop)
-        }
-
-        return(
-        <Paper>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell><b>ASSETS</b></TableCell>
-                        <TableCell><b>COUNT</b></TableCell>
-                        <TableCell></TableCell>
-
-
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {ArrayOfObj.map(n => {
-                        return (
-                            <TableRow key={`${n.name}`}>
-                                <TableCell>{n.name}</TableCell>
-                                <TableCell>{n.count}</TableCell>
-
-                                <TableCell><Button onClick={()=>this.handleEdit(n)}><Edit></Edit></Button></TableCell>
-
-                            </TableRow>
-                        );
-                    })}
-                </TableBody>
-            </Table>
-        </Paper>
-        )
-    }
+    // renderTable()  {
+    //     let { asset_prop } = this.props;
+    //     let ArrayOfObj = asset_prop
+    //
+    //     if (!(Array.isArray(ArrayOfObj))){
+    //         ArrayOfObj = Object.values(asset_prop)
+    //     }
+    //
+    //     return(
+    //     <Paper>
+    //         <Table>
+    //             <TableHead>
+    //                 <TableRow>
+    //                     <TableCell><b>ASSETS</b></TableCell>
+    //                     <TableCell><b>COUNT</b></TableCell>
+    //                     <TableCell></TableCell>
+    //
+    //
+    //                 </TableRow>
+    //             </TableHead>
+    //             <TableBody>
+    //                 {ArrayOfObj.map(n => {
+    //                     return (
+    //                         <TableRow key={`${n.name}`}>
+    //                             <TableCell>{n.name}</TableCell>
+    //                             <TableCell><Tooltip id='tooltip-icon'title='Edit'>{n.count}</Tooltip></TableCell>
+    //                             <TableCell><Button onClick={()=>this.handleEdit(n)}><Edit></Edit></Button></TableCell>
+    //                         </TableRow>
+    //                     );
+    //                 })}
+    //             </TableBody>
+    //         </Table>
+    //     </Paper>
+    //     )
+    // }
 
     renderFilterderTable()  {
         let { asset_prop } = this.props;
@@ -151,7 +186,6 @@ class Hr extends Component{
                         <TableRow>
                             <TableCell><b>ASSETS</b></TableCell>
                             <TableCell><b>COUNT</b></TableCell>
-                            <TableCell></TableCell>
 
 
                         </TableRow>
@@ -161,10 +195,24 @@ class Hr extends Component{
                             return (
                                 <TableRow key={`${n.name}`}>
                                     <TableCell>{n.name}</TableCell>
-                                    <TableCell>{n.count}</TableCell>
+                                    {
 
-                                    <TableCell><Button onClick={()=>this.handleEdit(n)}><Edit></Edit></Button></TableCell>
+                                            ((this.state.clicked && n.id===this.state.id)?(<TableCell>
+                                                <form onSubmit={(e,n)=>this.handleAssetSubmit(e,n)}>
+                                                    <input autoFocus name='count' onChange={(e)=>this.handleFormFieldChange(e)} type="text" defaultValue={this.state.count} onBlur={()=> this.setState({clicked:!this.state.clicked})}/>
+                                                    <button type='submit'>Submit</button>
+                                                    <button onClick={()=>this.setState({clicked:!this.state.clicked})}>Cancel</button>
+                                                </form>
+                                            </TableCell>):(<TableCell>
+                                                <Tooltip id="tooltip-icon" title="Edit">
+                                                <div tooltip='Edit'onClick={()=>this.handleEdit(n)} >
+                                                    <input type="text" value={n.count} disabled/>
+                                                </div>
+                                                </Tooltip>
+                                            </TableCell>))
 
+
+                                    }
                                 </TableRow>
                             );
                         })}
@@ -187,6 +235,7 @@ class Hr extends Component{
                 <div>
                 <MenuAppBar goHome={this.props.pushToHome}/>
                 </div>
+
                 {/*<h1>HR DASHBOARD</h1>*/}
                 {/*<h2>{"Data from the store: "+this.props.hr}</h2>*/}
                 <div style = {center}>

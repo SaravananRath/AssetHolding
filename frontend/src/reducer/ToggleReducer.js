@@ -38,7 +38,7 @@ export const reducerFunc = (state=initialState, action) => {
                 if (_asset.id === action.id) {
                     return {..._asset, ...action.payload}
                 }
-                console.log(_asset)
+                // console.log(_asset)
                 return _asset
             })
 
