@@ -4,17 +4,10 @@ import { connect } from 'react-redux'
 
 
 const assets_prop = (assets,filter_term) => {
-    console.log(assets)
-
-    if(filter_term!==undefined){
-
+        // console.log(assets)
         let searchTerm = new RegExp(filter_term,'i')
-        let filteredAssets = assets.filter(a=>a.name.match(searchTerm))
-        // console.log(filteredAssets)
-        return filteredAssets
-    }
-    return assets
-
+        assets = assets.filter(a=>a.name.match(searchTerm))
+        return assets
 }
 
 
@@ -23,8 +16,9 @@ const mapStatetoProps = (state) => {
         hr: state.toggle_reducer.hr,
         open: state.toggle_reducer.open,
         asset_prop: assets_prop(state.toggle_reducer.assets,state.toggle_reducer.filterTerm)
-        // filter_prop:state.toggle_reducer.filterTerm
+        // asset_prop:state.toggle_reducer.assets
     }
+
 }
 const mapDispatchtoProps = (dispatch) => {
     return{

@@ -83,10 +83,7 @@ class Hr extends Component{
 
 
     componentDidMount() {
-        this.props.getHr()
         this.props.assetDataCall()
-
-        // console.log(this.props.asset_prop)
     }
     afterOpenModal(){
         document.body.style.overflow = 'hidden';

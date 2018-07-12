@@ -12,18 +12,7 @@ const initialState = {
 
 export const reducerFunc = (state=initialState, action) => {
     switch(action.type){
-        case 'SHOW_HR':
-            return{
-                hr: "HR_Page"
-            }
-        case 'SHOW_EMPLOYEE':
-            return{
-                employee:"Employee_Page"
-            }
-        case 'SHOW_LOGIN':
-            return{
-                login:"Login_Page"
-            }
+
         case 'TOGGLE_MODAL':
             return{
                 ...state,
@@ -34,8 +23,6 @@ export const reducerFunc = (state=initialState, action) => {
             return {
                 ...state,
                 assets: action.assets,
-                filterTerm:'A'
-
             }
 
         case 'ADD_ASSET_DATA_CALL_SUCCESS': {
