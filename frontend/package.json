@@ -10,6 +10,7 @@
     "immutability-helper": "^2.7.1",
     "normalizr": "^3.2.4",
     "react": "^16.4.1",
+    "react-autosuggest": "^9.3.4",
     "react-dom": "^16.4.1",
     "react-modal": "^3.4.5",
     "react-redux": "^5.0.7",

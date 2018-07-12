@@ -28,6 +28,19 @@ class HrController < ApplicationController
     end
   end
 
+  def delete_company_asset
+    begin
+      company_asset_params['company_asset_params'].each do |asset|
+        company_asset = CompanyAsset.find_by(:id=>asset["id"])
+        company_asset.destroy
+        puts("#{asset} deleted")
+      end
+      render json: {"message" => "Company Assets Successfully deleted", "status" => 200}
+    rescue
+      render json: {"message" => "Unable to delete company assets", "status" => 500}
+    end
+  end
+
   private
 
   def serialize_company_asset(object)

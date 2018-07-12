@@ -1,11 +1,12 @@
 // import { normalize, schema } from 'normalizr';
-import update from 'immutability-helper';
+// import update from 'immutability-helper';
 const initialState = {
     employee: '',
     hr: '',
     login: '',
     open: false,
-    assets: []
+    assets: [],
+    filterTerm:''
 }
 
 
@@ -32,27 +33,36 @@ export const reducerFunc = (state=initialState, action) => {
 
             return {
                 ...state,
-                assets: action.assets
+                assets: action.assets,
+                filterTerm:'A'
 
             }
 
         case 'ADD_ASSET_DATA_CALL_SUCCESS': {
-            // const newArray = update(state,{$push:action.assets})
-            return {...state, assets: state.assets.concat(action.data)}
-            // console.log(action.data)
-            // return {...state, assets: action.data}
+            let newAssets = state.assets.slice();
+            return {...state, assets: newAssets.concat(action.data)}
+
 
         }
-        case 'UPDATE_ASSET_DATA_SUCCESS':{
-            const updatedAssets = state.assets.map(a => {
-                if(a.id === action.id){
-                    return { ...a, ...action.payload }
+        case 'UPDATE_ASSET_DATA_SUCCESS': {
+            let newAssets = state.assets.slice();
+
+            const updatedAssets = newAssets.map(_asset => {
+                if (_asset.id === action.id) {
+                    return {..._asset, ...action.payload}
                 }
-                return a
+                console.log(_asset)
+                return _asset
             })
+
             return {
-                ...state,assets:updatedAssets
+                ...state, assets: updatedAssets
             }
+        }
+
+        case 'FILTER_CALL':{
+
+            return {...state,filterTerm:action.data}
         }
 
         default:

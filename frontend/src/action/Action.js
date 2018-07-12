@@ -12,9 +12,14 @@ export function employee(){
         type:'SHOW_EMPLOYEE'
     }
 }
-
+export function getAssetDataFromPage(data){
+    return{
+        type:'PAGE_DATA',
+        data
+    }
+}
 export function updateAssetDataCall(data){
-    console.log(data)
+    // console.log(data)
     return(dispatch) =>{
         axios({
             method:'patch',
@@ -25,7 +30,7 @@ export function updateAssetDataCall(data){
             }
         })
             .then(response =>{
-                console.log(response)
+                // console.log(response)
                 dispatch(updateAssetDataCallSuccess(data))
             })
             .catch(function(error){
@@ -54,8 +59,8 @@ export function addAssetDataCall(data){
         })
             .then(response =>{
                 console.log(response)
-                dispatch(addAssetDetailCallSuccess(response.data.company_assets))
-                // dispatch(addAssetDetailCallSuccess(data))
+                // dispatch(addAssetDetailCallSuccess(response.data.company_assets))
+                dispatch(addAssetDetailCallSuccess(data))
 
 
             })
@@ -132,6 +137,13 @@ export function apiCall(user){
             })
     }
 
+}
+
+export function filterData(data){
+    return{
+        type:'FILTER_CALL',
+        data
+    }
 }
 
 export function apiSuccess(){
