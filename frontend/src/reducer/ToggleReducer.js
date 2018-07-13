@@ -5,8 +5,9 @@ const initialState = {
     hr: '',
     login: '',
     open: false,
-    assets: [],
-    filterTerm:''
+    assets: {},
+    filterTerm:'',
+    countries:[]
 }
 
 
@@ -18,12 +19,21 @@ export const reducerFunc = (state=initialState, action) => {
                 ...state,
                 open:!state.open
             }
-        case 'ASSET_DATA_CALL':
+        case 'ASSET_DATA_CALL': {
+            const obj = action.data.reduce((a, c) => {
+                a[c.id] = c
+                return a
+            }, {})
+            // const assetKey = action.assets.map(asset => asset.id)
+            console.log(obj)
+            // console.log(assetKey)
 
             return {
                 ...state,
-                assets: action.assets,
+                // ... obj,
+                assets:obj
             }
+        }
 
         case 'ADD_ASSET_DATA_CALL_SUCCESS': {
             let newAssets = state.assets.slice();
@@ -32,24 +42,26 @@ export const reducerFunc = (state=initialState, action) => {
 
         }
         case 'UPDATE_ASSET_DATA_SUCCESS': {
-            let newAssets = state.assets.slice();
+            const asset = state.assets[action.id]
 
-            const updatedAssets = newAssets.map(_asset => {
-                if (_asset.id === action.id) {
-                    return {..._asset, ...action.payload}
-                }
-                // console.log(_asset)
-                return _asset
-            })
+            return {...state,
 
-            return {
-                ...state, assets: updatedAssets
+                    assets: {
+                        ...state.assets, [action.id]: {
+                            ...asset,
+                            count: action.payload.count
+                        }
+                    }
             }
         }
 
         case 'FILTER_CALL':{
 
             return {...state,filterTerm:action.data}
+        }
+
+        case 'COUNTRY_DATA':{
+            return{...state,countries:action.data}
         }
 
         default:

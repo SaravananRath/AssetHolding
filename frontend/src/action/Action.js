@@ -84,7 +84,7 @@ export function assetDataCall(){
         }
     })
         .then(response =>{
-            // console.log(response.data.assets)
+            console.log(response.data.assets)
             return(
                 dispatch(assetDataCallSuccess(response.data.assets))
             )
@@ -95,10 +95,10 @@ export function assetDataCall(){
     }
 }
 
-export function assetDataCallSuccess(assets){
+export function assetDataCallSuccess(data){
     return{
         type: 'ASSET_DATA_CALL',
-        assets
+        data
     }
 }
 
@@ -137,6 +137,21 @@ export function apiCall(user){
             })
     }
 
+}
+export function getCountry(data){
+    return(dispatch) => {
+        axios.get(`https://restcountries.eu/rest/v2/name/${data}`)
+            .then(response=>{
+                console.log(response)
+                dispatch(getCountrySuccess(response.data))
+            })
+    }
+}
+export function getCountrySuccess(data){
+    return{
+        type:'COUNTRY_DATA',
+        data
+    }
 }
 
 export function filterData(data){

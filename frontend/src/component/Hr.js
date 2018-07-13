@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import Modal from 'react-modal'
 import HrAddAssetForm from './HrAddAssetForm'
-// import HrEditAssetForm from './HrEditAssetFrom'
 import './Hr.css'
 import Table from "@material-ui/core/Table"
 import TableHead from "@material-ui/core/TableHead"
@@ -15,7 +14,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import TextField from '@material-ui/core/TextField'
 import Cancel from '@material-ui/icons/Cancel'
 import Check from '@material-ui/icons/Check'
-
+import axios from 'axios';
 // import FilterSearch from './Autosuggest'
 // import CenteredGrid from './Grid.js';
 import Grid from '@material-ui/core/Grid';
@@ -61,21 +60,32 @@ class Hr extends Component{
             originalCount:'',
             count:'',
             id:'',
-            name:''
+            name:'',
+            country:'',
+            assets:{}
+            // countries:[]
         }
-    }
-    handleChange=(e)=>{
-
-        let state= this.state
-        state[e.target.name]=e.target.value
-        this.setState(state)
-        this.props.filterData(this.state.searchTerm)
     }
     handleFormFieldChange =(e)=>{
         let state= this.state
         state[e.target.name]=e.target.value
         this.setState(state)
     }
+    handleFilterChange=(e)=>{
+        this.handleFormFieldChange(e)
+        this.props.filterData(this.state.searchTerm)
+    }
+    handleCountryApiCall =(e)=> {
+        this.handleFormFieldChange(e)
+        if(this.state.country!== '') {
+            this.props.getCountry(this.state.country)
+        }
+    }
+
+
+
+
+
     submit = (values) => {
         // console.log(values)
         this.closeModal()
@@ -138,7 +148,10 @@ class Hr extends Component{
         </TableCell>)
     }
     renderTable()  {
+
         let { asset_prop } = this.props;
+        // let arrOfObj = Object.values(obj)
+        // console.log(arrOfObj)
         if(asset_prop!==undefined){
         return(
                 <TableBody>
@@ -163,9 +176,9 @@ class Hr extends Component{
         }
     }
     render(){
-        if(this.props.asset_prop=== undefined){
-            return(<div>Access Denied</div>)
-        }
+        // if(this.props.obj=== undefined){
+        //     return(<div>Access Denied</div>)
+        // }
         return(
             <div id='container'>
                 <div>
@@ -193,10 +206,20 @@ class Hr extends Component{
 
                     </Modal>
 
+                    <div style={{'marginBottom':'50px'}}>
+                        <TextField type="text" name='country' onChange={(e)=>this.handleCountryApiCall(e)} label='Search Country'/>
+                    </div>
+
+                        <ul>
+                            {
+
+                                this.props.countries.map((n,i)=>{return(<li key={i}>{n.name}</li>)})
+                            }
+                        </ul>
 
 
                     <div style={{'marginBottom':'50px'}}>
-                        <TextField type="text" name='searchTerm'onChange={(e)=>this.handleChange(e)} label='Search Asset'/>
+                        <TextField type="text" name='searchTerm'onChange={(e)=>this.handleFilterChange(e)} label='Search Asset'/>
                     </div>
                 <Grid >
                     <Paper>
@@ -214,6 +237,7 @@ class Hr extends Component{
                 </div>
 
                 {/*<CenteredGrid/>*/}
+
             </div>
         )
     }
