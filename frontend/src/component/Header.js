@@ -83,11 +83,11 @@ class MenuAppBar extends React.Component {
                                     id="menu-appbar"
                                     anchorEl={anchorEl}
                                     anchorOrigin={{
-                                        vertical: 'top',
+                                        vertical: 'bottom',
                                         horizontal: 'right',
                                     }}
                                     transformOrigin={{
-                                        vertical: 'top',
+                                        vertical: 'bottom',
                                         horizontal: 'right',
                                     }}
                                     open={open}

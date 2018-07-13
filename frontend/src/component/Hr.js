@@ -12,6 +12,10 @@ import Paper from "@material-ui/core/Paper";
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Tooltip from '@material-ui/core/Tooltip'
+import TextField from '@material-ui/core/TextField'
+import Cancel from '@material-ui/icons/Cancel'
+import Check from '@material-ui/icons/Check'
+
 // import FilterSearch from './Autosuggest'
 // import CenteredGrid from './Grid.js';
 import Grid from '@material-ui/core/Grid';
@@ -48,9 +52,6 @@ const customStyles = {
 }
 
 Modal.setAppElement('#root')
-
-// let fAssets = []
-
 class Hr extends Component{
     constructor(props){
         super(props)
@@ -75,6 +76,26 @@ class Hr extends Component{
         state[e.target.name]=e.target.value
         this.setState(state)
     }
+    submit = (values) => {
+        // console.log(values)
+        this.closeModal()
+        this.props.addAssetDataCall(values.assets)
+        // this.props.assetDataCall()
+
+    }
+    componentDidMount() {
+        this.props.assetDataCall()
+    }
+    afterOpenModal(){
+        document.body.style.overflow = 'hidden';
+    }
+    closeModal = () =>{
+        document.body.style.overflow = 'scroll';
+        this.props.toggleModal();
+    }
+    handleEdit=(n) =>{
+        this.setState({clicked:!this.state.clicked,id:n.id,name:n.name,count:n.count,originalCount:n.count})
+    }
     handleAssetSubmit=(e)=>{
         e.preventDefault()
         this.setState({clicked:!this.state.clicked})
@@ -91,134 +112,50 @@ class Hr extends Component{
             }
         }
         this.props.updateAssetDataCall(data)
-        }
-
-        // console.log(this.state.count)
-
-    handleSubmit(e){
-        e.preventDefault();
-        console.log(this.state.searchTerm)
-        this.props.filterData(this.state.searchTerm)
-    }
-    submit = (values) => {
-        // console.log(values)
-        this.closeModal()
-        this.props.addAssetDataCall(values.assets)
-        // this.props.assetDataCall()
-
     }
 
-    submitEdit = (values) => {
-        console.log(values)
+    renderEditableCell(n){
+        return(<TableCell>
+            <form onSubmit={(e,n)=>this.handleAssetSubmit(e,n)}>
+                <TextField autoFocus name='count' onChange={(e)=>this.handleFormFieldChange(e)} type="text" defaultValue={this.state.count} />
+                <Button type='submit' ><Check/></Button>
+                <Button onClick={(e)=>{e.preventDefault();this.setState({clicked:!this.state.clicked})}}><Cancel/></Button>
+            </form>
+        </TableCell>)
     }
-
-
-    componentDidMount() {
-        this.props.assetDataCall()
+    renderUnEditableCell(n){
+        return(<TableCell>
+            <Tooltip id="tooltip-icon" title="Edit" placement="right">
+                <div onClick={()=>this.handleEdit(n)} style={{'width':'175px'}}>
+                    <TextField type="text" value={n.count} disabled />
+                </div>
+            </Tooltip>
+        </TableCell>)
     }
-    afterOpenModal(){
-        document.body.style.overflow = 'hidden';
+    renderRemainingCell(n){
+        return(<TableCell>
+            <TextField type="text" value={n.count} disabled/>
+        </TableCell>)
     }
-    closeModal = () =>{
-        document.body.style.overflow = 'scroll';
-        this.props.toggleModal();
-    }
-    handleEdit=(n) =>{
-        // console.log(n.id+n.name+n.count)
-        // let data={
-        //     id:n.id,
-        //     name:n.name,
-        //     count:100
-        // }
-        // console.log(data)
-        // this.props.updateAssetDataCall(data)
-        this.setState({clicked:!this.state.clicked})
-        this.setState({id:n.id})
-        this.setState({name:n.name})
-        this.setState({count:n.count})
-        this.setState({originalCount:n.count})
-
-    }
-    // renderTable()  {
-    //     let { asset_prop } = this.props;
-    //     let ArrayOfObj = asset_prop
-    //
-    //     if (!(Array.isArray(ArrayOfObj))){
-    //         ArrayOfObj = Object.values(asset_prop)
-    //     }
-    //
-    //     return(
-    //     <Paper>
-    //         <Table>
-    //             <TableHead>
-    //                 <TableRow>
-    //                     <TableCell><b>ASSETS</b></TableCell>
-    //                     <TableCell><b>COUNT</b></TableCell>
-    //                     <TableCell></TableCell>
-    //
-    //
-    //                 </TableRow>
-    //             </TableHead>
-    //             <TableBody>
-    //                 {ArrayOfObj.map(n => {
-    //                     return (
-    //                         <TableRow key={`${n.name}`}>
-    //                             <TableCell>{n.name}</TableCell>
-    //                             <TableCell><Tooltip id='tooltip-icon'title='Edit'>{n.count}</Tooltip></TableCell>
-    //                             <TableCell><Button onClick={()=>this.handleEdit(n)}><Edit></Edit></Button></TableCell>
-    //                         </TableRow>
-    //                     );
-    //                 })}
-    //             </TableBody>
-    //         </Table>
-    //     </Paper>
-    //     )
-    // }
-
-    renderFilterderTable()  {
+    renderTable()  {
         let { asset_prop } = this.props;
-
         if(asset_prop!==undefined){
         return(
-            <Paper>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell><b>ASSETS</b></TableCell>
-                            <TableCell><b>COUNT</b></TableCell>
-
-
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {asset_prop.map(n => {
+                <TableBody>
+                    {
+                        asset_prop.map(n => {
                             return (
                                 <TableRow key={`${n.name}`}>
                                     <TableCell>{n.name}</TableCell>
                                     {
-
-                                            ((this.state.clicked && n.id===this.state.id)?(<TableCell>
-                                                <form onSubmit={(e,n)=>this.handleAssetSubmit(e,n)}>
-                                                    <input autoFocus name='count' onChange={(e)=>this.handleFormFieldChange(e)} type="text" defaultValue={this.state.count} onBlur={()=> this.setState({clicked:!this.state.clicked})}/>
-                                                    <button type='submit'>Submit</button>
-                                                    <button onClick={()=>this.setState({clicked:!this.state.clicked})}>Cancel</button>
-                                                </form>
-                                            </TableCell>):(<TableCell>
-                                                <Tooltip id="tooltip-icon" title="Edit">
-                                                <div tooltip='Edit'onClick={()=>this.handleEdit(n)} >
-                                                    <input type="text" value={n.count} disabled/>
-                                                </div>
-                                                </Tooltip>
-                                            </TableCell>))
-
-
+                                        ((this.state.clicked && n.id === this.state.id) ? (this.renderEditableCell(n)) : (this.state.clicked ? (this.renderRemainingCell(n)) : (this.renderUnEditableCell(n))))
                                     }
                                 </TableRow>
                             );
-                        })}
-                    </TableBody>
-                </Table>
-            </Paper>
+                        })
+                    }
+                </TableBody>
+
         )
     }
     else{
@@ -226,7 +163,6 @@ class Hr extends Component{
         }
     }
     render(){
-        // console.log(this.props.asset_prop.assets[0])
         if(this.props.asset_prop=== undefined){
             return(<div>Access Denied</div>)
         }
@@ -236,8 +172,6 @@ class Hr extends Component{
                 <MenuAppBar goHome={this.props.pushToHome}/>
                 </div>
 
-                {/*<h1>HR DASHBOARD</h1>*/}
-                {/*<h2>{"Data from the store: "+this.props.hr}</h2>*/}
                 <div style = {center}>
                     <Button variant="contained" color="default" onClick={this.props.toggleModal} >
                         Add Assets &nbsp;<CloudUploadIcon  />
@@ -257,41 +191,29 @@ class Hr extends Component{
                         </div>
                         <HrAddAssetForm onSubmit={this.submit}/>
 
-                        {/*xs, sm, md, lg, and xl.*/}
-
                     </Modal>
-                    {/*<Modal*/}
-                        {/*isOpen={this.props.open}*/}
-                        {/*onAfterOpen={this.afterOpenModal}*/}
-                        {/*// onRequestClose={this.closeModal}*/}
-                        {/*style={customStyles}*/}
-                        {/*contentLabel="Example Modal"*/}
-                        {/*// className="Modal"*/}
-                    {/*>*/}
-                        {/*<div style={closeModalButton}>*/}
-                            {/*<button onClick={this.closeModal}>X</button>*/}
-                        {/*</div>*/}
 
-                        {/*<HrEditAssetForm onSubmit={this.submitEdit} data={}/>*/}
 
-                        {/*/!*xs, sm, md, lg, and xl.*!/*/}
 
-                    {/*</Modal>*/}
-                    <Grid item xs={12} sm={6} >
-                    {/*{this.renderTable()}*/}
-                    </Grid>
-                    <div style={{'height':'100px'}}>
-                    {/*<FilterSearch data={this.props.asset_prop}/>*/}
+                    <div style={{'marginBottom':'50px'}}>
+                        <TextField type="text" name='searchTerm'onChange={(e)=>this.handleChange(e)} label='Search Asset'/>
                     </div>
-                    <form onSubmit={(e) =>this.handleSubmit(e)}>
-                        <input type="text" name='searchTerm'onChange={(e)=>this.handleChange(e)}/>
-                        <button type='submit'>submit</button>
-                    </form>
-                    {this.renderFilterderTable()}
+                <Grid >
+                    <Paper>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell><b>ASSETS</b></TableCell>
+                                    <TableCell><b>COUNT</b></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            {this.renderTable()}
+                        </Table>
+                    </Paper>
+                </Grid>
                 </div>
 
                 {/*<CenteredGrid/>*/}
-
             </div>
         )
     }
