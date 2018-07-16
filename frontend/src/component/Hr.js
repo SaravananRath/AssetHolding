@@ -14,12 +14,12 @@ import Tooltip from '@material-ui/core/Tooltip'
 import TextField from '@material-ui/core/TextField'
 import Cancel from '@material-ui/icons/Cancel'
 import Check from '@material-ui/icons/Check'
-import axios from 'axios';
+// import axios from 'axios';
 // import FilterSearch from './Autosuggest'
 // import CenteredGrid from './Grid.js';
 import Grid from '@material-ui/core/Grid';
 import MenuAppBar from './Header'
-import Edit from "@material-ui/icons/Edit"
+// import Edit from "@material-ui/icons/Edit"
 
 const divBody = {
     marginTop:' 20px'
@@ -77,15 +77,9 @@ class Hr extends Component{
     }
     handleCountryApiCall =(e)=> {
         this.handleFormFieldChange(e)
-        if(this.state.country!== '') {
-            this.props.getCountry(this.state.country)
-        }
+        this.props.getCountry(this.state.country)
+
     }
-
-
-
-
-
     submit = (values) => {
         // console.log(values)
         this.closeModal()
@@ -212,8 +206,7 @@ class Hr extends Component{
 
                         <ul>
                             {
-
-                                this.props.countries.map((n,i)=>{return(<li key={i}>{n.name}</li>)})
+                                (this.props.error)?(<div>No Country Found</div>):((this.props.fetching)?(<div>Loading</div>):(this.props.countries.map((n,i)=>{return(<li key={i}>{n.name}</li>)})))
                             }
                         </ul>
 

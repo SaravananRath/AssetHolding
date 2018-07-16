@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { push } from 'react-router-redux'
+import {ADD_ASSET_DATA_URL, AUTH_USER_URL, GET_ASSET_DATA_URL, GET_COUNTRY_URL, UPDATE_ASSET_DATA_URL} from "../const";
 
 export function hr() {
     return{
@@ -12,19 +13,13 @@ export function employee(){
         type:'SHOW_EMPLOYEE'
     }
 }
-export function getAssetDataFromPage(data){
-    return{
-        type:'PAGE_DATA',
-        data
-    }
-}
 export function updateAssetDataCall(data){
     console.log(data)
     return(dispatch) =>{
         axios({
             method:'patch',
             headers: {Authorization:localStorage.getItem('auth_token')},
-            url:'http://localhost:3001/api/hr/update_company_asset',
+            url:UPDATE_ASSET_DATA_URL,
             data:{
                 'company_asset_params' : [data]
             }
@@ -52,17 +47,15 @@ export function addAssetDataCall(data){
         axios({
             method: 'post',
             headers:{Authorization: localStorage.getItem('auth_token')},
-            url: 'http://localhost:3001/api/hr/create_company_asset',
+            url: ADD_ASSET_DATA_URL,
             data: {
                 'company_asset_params': data
             }
         })
             .then(response =>{
-                console.log(response)
+                // console.log(response.data.company_assets)
                 // dispatch(addAssetDetailCallSuccess(response.data.company_assets))
-                dispatch(addAssetDetailCallSuccess(data))
-
-
+                dispatch(addAssetDetailCallSuccess(response.data.company_assets[0]))
             })
             .catch(function(error){
                 console.log(error)
@@ -78,13 +71,13 @@ export function addAssetDetailCallSuccess(data){
 }
 export function assetDataCall(){
     return(dispatch) => {
-    axios.get('http://localhost:3001/api/hr/dashboard',{
+    axios.get(GET_ASSET_DATA_URL,{
         headers:{
             Authorization: localStorage.getItem('auth_token')
         }
     })
         .then(response =>{
-            console.log(response.data.assets)
+            // console.log(response.data.assets)
             return(
                 dispatch(assetDataCallSuccess(response.data.assets))
             )
@@ -109,9 +102,8 @@ export function pushToHome(){
 }
 export function apiCall(user){
     return(dispatch) => {
-        axios.post('http://localhost:3001/auth_user',
+        axios.post(AUTH_USER_URL,
             {
-
                     email: user.email,
                     password: user.password
             })
@@ -140,10 +132,16 @@ export function apiCall(user){
 }
 export function getCountry(data){
     return(dispatch) => {
-        axios.get(`https://restcountries.eu/rest/v2/name/${data}`)
+        dispatch(fetchingCountry())
+        axios.get(GET_COUNTRY_URL+data)
             .then(response=>{
                 console.log(response)
                 dispatch(getCountrySuccess(response.data))
+            })
+            .catch(function(error){
+                console.log(error)
+                dispatch(fetchingError())
+
             })
     }
 }
@@ -153,6 +151,18 @@ export function getCountrySuccess(data){
         data
     }
 }
+
+export function fetchingCountry(){
+    return {
+        type: 'FETCHING_COUNTRY'
+    }
+}
+export function fetchingError(){
+    return {
+        type: 'FETCHING_ERROR'
+    }
+}
+
 
 export function filterData(data){
     return{

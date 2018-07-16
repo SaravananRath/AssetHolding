@@ -7,45 +7,65 @@ const initialState = {
     open: false,
     assets: {},
     filterTerm:'',
-    countries:[]
+    countries:[],
+    keys:[],
+    fetching:false,
+    error:false
 }
-
+function normalizer(data){
+    const obj =data.reduce((a, c) => {
+        a[c.id] = c
+        return a
+    }, {})
+    return obj
+}
 
 export const reducerFunc = (state=initialState, action) => {
     switch(action.type){
-
+        case 'FETCHING_COUNTRY':
+            return{
+                ...state,
+                fetching:true
+            }
+        case 'FETCHING_ERROR':
+            return{
+                ...state,
+                error:true
+            }
+        case 'COUNTRY_DATA':{
+            return{...state,fetching:false, error:false,countries:action.data}
+        }
         case 'TOGGLE_MODAL':
             return{
                 ...state,
                 open:!state.open
             }
         case 'ASSET_DATA_CALL': {
-            const obj = action.data.reduce((a, c) => {
-                a[c.id] = c
-                return a
-            }, {})
-            // const assetKey = action.assets.map(asset => asset.id)
-            console.log(obj)
-            // console.log(assetKey)
-
+            const assetKey = action.data.map(asset => asset.id)
             return {
                 ...state,
-                // ... obj,
-                assets:obj
+                assets:normalizer(action.data),
+                keys:assetKey
             }
         }
 
         case 'ADD_ASSET_DATA_CALL_SUCCESS': {
-            let newAssets = state.assets.slice();
-            return {...state, assets: newAssets.concat(action.data)}
-
-
+            let newAssets = Object.values(state.assets)
+            let newAsset ={
+                id:action.data.id,
+                name:action.data.name,
+                count:action.data.count
+            }
+            newAssets.push(newAsset)
+            return {...state,
+                    assets: normalizer(newAssets)
+                    }
         }
+
+
         case 'UPDATE_ASSET_DATA_SUCCESS': {
             const asset = state.assets[action.id]
-
             return {...state,
-
                     assets: {
                         ...state.assets, [action.id]: {
                             ...asset,
@@ -59,11 +79,6 @@ export const reducerFunc = (state=initialState, action) => {
 
             return {...state,filterTerm:action.data}
         }
-
-        case 'COUNTRY_DATA':{
-            return{...state,countries:action.data}
-        }
-
         default:
             return state
     }
