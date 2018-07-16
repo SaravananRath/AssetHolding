@@ -1,6 +1,13 @@
 import axios from 'axios'
 import { push } from 'react-router-redux'
-import {ADD_ASSET_DATA_URL, AUTH_USER_URL, GET_ASSET_DATA_URL, GET_COUNTRY_URL, UPDATE_ASSET_DATA_URL} from "../const";
+import {
+    ADD_ASSET_DATA_URL,
+    AUTH_USER_URL,
+    DELETE_ASSET_DATA_URL,
+    GET_ASSET_DATA_URL,
+    GET_COUNTRY_URL,
+    UPDATE_ASSET_DATA_URL
+} from "../const";
 
 export function hr() {
     return{
@@ -130,6 +137,36 @@ export function apiCall(user){
     }
 
 }
+
+export function deleteAsset(data){
+    // console.log(data)
+    return(dispatch) => {
+        axios({
+            method: 'DELETE',
+            headers:{Authorization: localStorage.getItem('auth_token')},
+            url: DELETE_ASSET_DATA_URL,
+            data: {
+                'company_asset_params': [data]
+            }
+        })
+            .then(response=>{
+                console.log(response.data)
+                dispatch(deleteAssetSuccess(data))
+            })
+            .catch(function (error){
+                console.log(error)
+            })
+    }
+}
+
+export function deleteAssetSuccess(data){
+    return{
+        type:'DELETE_ASSET',
+        data
+    }
+}
+
+
 export function getCountry(data){
     return(dispatch) => {
         dispatch(fetchingCountry())

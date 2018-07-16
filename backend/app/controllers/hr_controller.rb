@@ -31,7 +31,7 @@ class HrController < ApplicationController
   def delete_company_asset
     begin
       company_asset_params['company_asset_params'].each do |asset|
-        company_asset = CompanyAsset.find_by(:id=>asset["id"])
+        company_asset = CompanyAsset.find_by(:name=>asset["name"])
         company_asset.destroy
         puts("#{asset} deleted")
       end

@@ -14,6 +14,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import TextField from '@material-ui/core/TextField'
 import Cancel from '@material-ui/icons/Cancel'
 import Check from '@material-ui/icons/Check'
+import Delete from '@material-ui/icons/Delete'
 // import axios from 'axios';
 // import FilterSearch from './Autosuggest'
 // import CenteredGrid from './Grid.js';
@@ -117,13 +118,19 @@ class Hr extends Component{
         }
         this.props.updateAssetDataCall(data)
     }
+    handleDelete(n){
+        // console.log(n)
+        this.setState({clicked:!this.state.clicked})
+        this.props.deleteAsset(n)
+    }
 
     renderEditableCell(n){
         return(<TableCell>
-            <form onSubmit={(e,n)=>this.handleAssetSubmit(e,n)}>
+            <form onSubmit={(e)=>this.handleAssetSubmit(e)}>
                 <TextField autoFocus name='count' onChange={(e)=>this.handleFormFieldChange(e)} type="text" defaultValue={this.state.count} />
                 <Button type='submit' ><Check/></Button>
                 <Button onClick={(e)=>{e.preventDefault();this.setState({clicked:!this.state.clicked})}}><Cancel/></Button>
+                <Button onClick={()=>{this.handleDelete(n)}}><Delete/></Button>
             </form>
         </TableCell>)
     }

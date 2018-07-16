@@ -1,5 +1,5 @@
 import Hr from '../component/Hr'
-import { hr,toggleModal,assetDataCall,addAssetDataCall,pushToHome,updateAssetDataCall,filterData,getCountry} from "../action/Action";
+import { hr,toggleModal,assetDataCall,addAssetDataCall,pushToHome,updateAssetDataCall,filterData,getCountry,deleteAsset} from "../action/Action";
 import { connect } from 'react-redux'
 
 
@@ -13,7 +13,7 @@ const assets_prop = (assets,filter_term) => {
 }
 
 const country_prop = (countries) =>{
-    console.log(countries.length)
+    // console.log(countries.length)
     if(countries.length < 15) {
         return countries
     }
@@ -45,7 +45,8 @@ const mapDispatchtoProps = (dispatch) => {
         pushToHome: ()=>dispatch(pushToHome()),
         updateAssetDataCall: (data)=>dispatch(updateAssetDataCall(data)),
         filterData: (data)=>dispatch(filterData(data)),
-        getCountry: (data)=>dispatch(getCountry(data))
+        getCountry: (data)=>dispatch(getCountry(data)),
+        deleteAsset: (data)=>dispatch(deleteAsset(data))
     }
 }
 

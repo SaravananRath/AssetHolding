@@ -79,6 +79,11 @@ export const reducerFunc = (state=initialState, action) => {
 
             return {...state,filterTerm:action.data}
         }
+        case 'DELETE_ASSET':{
+            var _ = require('lodash');
+            const key= action.data.id
+            return {...state,assets:_.omit(state.assets, key)}
+        }
         default:
             return state
     }
