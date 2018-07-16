@@ -50,13 +50,10 @@ export const reducerFunc = (state=initialState, action) => {
         }
 
         case 'ADD_ASSET_DATA_CALL_SUCCESS': {
+            console.log(action.data)
             let newAssets = Object.values(state.assets)
-            let newAsset ={
-                id:action.data.id,
-                name:action.data.name,
-                count:action.data.count
-            }
-            newAssets.push(newAsset)
+            newAssets=newAssets.concat(action.data)
+            console.log(newAssets)
             return {...state,
                     assets: normalizer(newAssets)
                     }

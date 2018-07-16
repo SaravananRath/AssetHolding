@@ -49,7 +49,7 @@ export function updateAssetDataCallSuccess(data){
     }
 }
 export function addAssetDataCall(data){
-    console.log(data)
+    // console.log(data)
     return(dispatch) => {
         axios({
             method: 'post',
@@ -62,7 +62,7 @@ export function addAssetDataCall(data){
             .then(response =>{
                 // console.log(response.data.company_assets)
                 // dispatch(addAssetDetailCallSuccess(response.data.company_assets))
-                dispatch(addAssetDetailCallSuccess(response.data.company_assets[0]))
+                dispatch(addAssetDetailCallSuccess(response.data.company_assets))
             })
             .catch(function(error){
                 console.log(error)

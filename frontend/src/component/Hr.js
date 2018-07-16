@@ -15,6 +15,7 @@ import TextField from '@material-ui/core/TextField'
 import Cancel from '@material-ui/icons/Cancel'
 import Check from '@material-ui/icons/Check'
 import Delete from '@material-ui/icons/Delete'
+import CustomPaginationActionsTable from './Pagination_Table'
 // import axios from 'axios';
 // import FilterSearch from './Autosuggest'
 // import CenteredGrid from './Grid.js';
@@ -207,15 +208,15 @@ class Hr extends Component{
 
                     </Modal>
 
-                    <div style={{'marginBottom':'50px'}}>
-                        <TextField type="text" name='country' onChange={(e)=>this.handleCountryApiCall(e)} label='Search Country'/>
-                    </div>
+                    {/*<div style={{'marginBottom':'50px'}}>*/}
+                        {/*<TextField type="text" name='country' onChange={(e)=>this.handleCountryApiCall(e)} label='Search Country'/>*/}
+                    {/*</div>*/}
 
-                        <ul>
-                            {
-                                (this.props.error)?(<div>No Country Found</div>):((this.props.fetching)?(<div>Loading</div>):(this.props.countries.map((n,i)=>{return(<li key={i}>{n.name}</li>)})))
-                            }
-                        </ul>
+                        {/*<ul>*/}
+                            {/*{*/}
+                                {/*(this.props.error)?(<div>No Country Found</div>):((this.props.fetching)?(<div>Loading</div>):(this.props.countries.map((n,i)=>{return(<li key={i}>{n.name}</li>)})))*/}
+                            {/*}*/}
+                        {/*</ul>*/}
 
 
                     <div style={{'marginBottom':'50px'}}>
@@ -234,6 +235,7 @@ class Hr extends Component{
                         </Table>
                     </Paper>
                 </Grid>
+                    {/*<CustomPaginationActionsTable assets={this.props.asset_prop}/>*/}
                 </div>
 
                 {/*<CenteredGrid/>*/}

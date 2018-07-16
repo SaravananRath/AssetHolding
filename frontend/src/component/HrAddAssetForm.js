@@ -11,8 +11,18 @@ const renderTextField = ({input, label, type}) => (
         type={type}
         {...input}
         fullWidth
+        autoFocus
     />
 )
+const renderTextField1 = ({input, label, type}) => (
+    <TextField
+        label={label}
+        type={type}
+        {...input}
+        fullWidth
+    />
+)
+
 
 const buttonStyle ={
     display:'block',
@@ -48,11 +58,12 @@ const renderAssets = ({fields}) => (
                         type="text"
                         component={renderTextField}
                         label='Asset Name'
+
                     />
                     <Field
                         name={`${asset}.count`}
                         type="text"
-                        component={renderTextField}
+                        component={renderTextField1}
                         label="Asset Count"
                     />
 
