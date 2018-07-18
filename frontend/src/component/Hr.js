@@ -10,18 +10,19 @@ import TableBody from "@material-ui/core/TableBody"
 import Paper from "@material-ui/core/Paper";
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import Tooltip from '@material-ui/core/Tooltip'
+// import Tooltip from '@material-ui/core/Tooltip'
 import TextField from '@material-ui/core/TextField'
 import Cancel from '@material-ui/icons/Cancel'
 import Check from '@material-ui/icons/Check'
 import Delete from '@material-ui/icons/Delete'
-import CustomPaginationActionsTable from './Pagination_Table'
+// import CustomPaginationActionsTable from './Pagination_Table'
 // import axios from 'axios';
 // import FilterSearch from './Autosuggest'
 // import CenteredGrid from './Grid.js';
 import Grid from '@material-ui/core/Grid';
 import MenuAppBar from './Header'
-// import Edit from "@material-ui/icons/Edit"
+// import {emptyState} from "../action/Action";
+import Edit from "@material-ui/icons/Edit"
 
 const divBody = {
     marginTop:' 20px'
@@ -48,6 +49,7 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         height: '500px', // <-- This sets the height
+        width:'400px'
         // overflow: 'scroll' // <-- This tells the modal to scrol
     }
 }
@@ -84,8 +86,17 @@ class Hr extends Component{
     }
     submit = (values) => {
         // console.log(values)
+        var inflection = require( 'inflection' );
+        var singularArray = values.assets.map(a=>{
+            let obj={}
+            obj['name']=inflection.singularize(a.name)
+            obj['count']=a.count
+            return obj
+        })
+        // console.log(singularArray)
+        this.props.addAssetDataCall(singularArray)
         this.closeModal()
-        this.props.addAssetDataCall(values.assets)
+
         // this.props.assetDataCall()
 
     }
@@ -137,11 +148,12 @@ class Hr extends Component{
     }
     renderUnEditableCell(n){
         return(<TableCell>
-            <Tooltip id="tooltip-icon" title="Edit" placement="right">
-                <div onClick={()=>this.handleEdit(n)} style={{'width':'175px'}}>
+            {/*<Tooltip id="tooltip-icon" title="Edit" placement="right">*/}
+
                     <TextField type="text" value={n.count} disabled />
-                </div>
-            </Tooltip>
+                    <Button  onClick={()=>this.handleEdit(n)}><Edit/></Button>
+
+            {/*</Tooltip>*/}
         </TableCell>)
     }
     renderRemainingCell(n){
@@ -178,13 +190,13 @@ class Hr extends Component{
         }
     }
     render(){
-        // if(this.props.obj=== undefined){
-        //     return(<div>Access Denied</div>)
-        // }
+        if(localStorage.getItem('hr_auth_token')===null){
+            return(<div>Access Denied</div>)
+        }
         return(
             <div id='container'>
                 <div>
-                <MenuAppBar goHome={this.props.pushToHome}/>
+                <MenuAppBar goHome={this.props.pushToHome} emptyState={this.props.emptyState}/>
                 </div>
 
                 <div style = {center}>
@@ -204,7 +216,7 @@ class Hr extends Component{
                         <div style={closeModalButton}>
                         <button onClick={this.closeModal}>X</button>
                         </div>
-                        <HrAddAssetForm onSubmit={this.submit}/>
+                        <HrAddAssetForm onSubmit={this.submit} assets={this.props.asset_prop}/>
 
                     </Modal>
 

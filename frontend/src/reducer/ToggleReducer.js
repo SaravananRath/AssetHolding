@@ -1,16 +1,16 @@
-// import { normalize, schema } from 'normalizr';
-// import update from 'immutability-helper';
+
 const initialState = {
     employee: '',
     hr: '',
-    login: '',
+    login: false,
     open: false,
     assets: {},
     filterTerm:'',
     countries:[],
     keys:[],
     fetching:false,
-    error:false
+    error:false,
+    errorMessage:'Invalid Username or Password'
 }
 function normalizer(data){
     const obj =data.reduce((a, c) => {
@@ -22,6 +22,20 @@ function normalizer(data){
 
 export const reducerFunc = (state=initialState, action) => {
     switch(action.type){
+        case 'LOGIN_ERROR':
+            return{
+                ...state,
+                errorMessage:'Invalid Username or Password'
+            }
+        case 'DELETE_STATE':
+            return{
+                login:false
+            }
+        case 'API_CALL':
+            return{
+                ...state,login:true,errorMessage:''
+
+            }
         case 'FETCHING_COUNTRY':
             return{
                 ...state,
@@ -46,14 +60,15 @@ export const reducerFunc = (state=initialState, action) => {
                 ...state,
                 assets:normalizer(action.data),
                 keys:assetKey
+
             }
         }
 
         case 'ADD_ASSET_DATA_CALL_SUCCESS': {
-            console.log(action.data)
+            // console.log(action.data)
             let newAssets = Object.values(state.assets)
             newAssets=newAssets.concat(action.data)
-            console.log(newAssets)
+            // console.log(newAssets)
             return {...state,
                     assets: normalizer(newAssets)
                     }

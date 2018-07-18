@@ -25,7 +25,7 @@ export function updateAssetDataCall(data){
     return(dispatch) =>{
         axios({
             method:'patch',
-            headers: {Authorization:localStorage.getItem('auth_token')},
+            headers: {Authorization:localStorage.getItem('hr_auth_token')},
             url:UPDATE_ASSET_DATA_URL,
             data:{
                 'company_asset_params' : [data]
@@ -53,7 +53,7 @@ export function addAssetDataCall(data){
     return(dispatch) => {
         axios({
             method: 'post',
-            headers:{Authorization: localStorage.getItem('auth_token')},
+            headers:{Authorization: localStorage.getItem('hr_auth_token')},
             url: ADD_ASSET_DATA_URL,
             data: {
                 'company_asset_params': data
@@ -80,7 +80,7 @@ export function assetDataCall(){
     return(dispatch) => {
     axios.get(GET_ASSET_DATA_URL,{
         headers:{
-            Authorization: localStorage.getItem('auth_token')
+            Authorization: localStorage.getItem('hr_auth_token')
         }
     })
         .then(response =>{
@@ -107,6 +107,17 @@ export function pushToHome(){
         dispatch(push('/'))
     }
 }
+export function emptyState(){
+    return{
+        type:'DELETE_STATE'
+    }
+}
+export function pushToHr(){
+    return(dispatch) => {
+        dispatch(push('/hr'))
+    }
+}
+
 export function apiCall(user){
     return(dispatch) => {
         axios.post(AUTH_USER_URL,
@@ -116,26 +127,35 @@ export function apiCall(user){
             })
             .then(response => {
                 console.log(response.data);
-                localStorage.setItem('auth_token',response.data.access_token)
-                localStorage.setItem('user_type',response.data.user_type)
+                // localStorage.setItem('auth_token',response.data.access_token)
+                // localStorage.setItem('user_type',response.data.user_type)
+                localStorage.setItem('hr_auth_token',response.data.access_token)
                 if(response.data.user_type==='HR') {
+                    // localStorage.setItem('hr_auth_token',response.data.access_token)
                     dispatch(push('hr'))
                 }
                 else if(response.data.user_type==='EMPLOYEE'){
+                    localStorage.setItem('employee_auth_token',response.data.access_token)
                     dispatch(push('employee'))
 
                 }
                 else{
                     dispatch(push('/'))
                 }
+                return (dispatch(apiSuccess()))
 
-                return (dispatch(apiSuccess(response.data.results)))
             })
             .catch(function (error) {
+                // dispatch(loginError())
                 console.log(error);
             })
     }
 
+}
+export function loginError(){
+    return{
+        type:'LOGIN_ERROR'
+    }
 }
 
 export function deleteAsset(data){
@@ -143,7 +163,7 @@ export function deleteAsset(data){
     return(dispatch) => {
         axios({
             method: 'DELETE',
-            headers:{Authorization: localStorage.getItem('auth_token')},
+            headers:{Authorization: localStorage.getItem('hr_auth_token')},
             url: DELETE_ASSET_DATA_URL,
             data: {
                 'company_asset_params': [data]

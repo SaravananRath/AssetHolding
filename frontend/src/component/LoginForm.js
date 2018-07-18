@@ -9,18 +9,20 @@ const buttonStyle = {
     top: '25px',
     marginBottom: '30px'
 }
-const renderTextField = ({input, label, type}) => (
+const renderTextField = ({input, label, type, meta: {touched, error}}) => (
+   <div>
     <TextField
         label={label}
         type={type}
         {...input}
         fullWidth
-    />
+    />{touched && error && <span>{error}</span>}
+       </div>
 )
 
 
 let LoginForm = (props) =>{
-    const { handleSubmit } = props
+    const { handleSubmit,error } = props
     return(
         <form onSubmit={handleSubmit}>
 
@@ -31,6 +33,9 @@ let LoginForm = (props) =>{
                 {/*<Field name="password" component='input' type="password"/>*/}
                 <Field name='password' component={renderTextField} label="Password" type="password"/>
             </div>
+            <br/>
+            {error && <strong>{error}</strong>}
+            <br/>
             <Button type="submit" variant='raised' color='primary' style={buttonStyle}>Login</Button>
         </form>
     )

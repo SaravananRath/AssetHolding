@@ -1,10 +1,11 @@
 import Hr from '../component/Hr'
-import { hr,toggleModal,assetDataCall,addAssetDataCall,pushToHome,updateAssetDataCall,filterData,getCountry,deleteAsset} from "../action/Action";
+import { hr,toggleModal,assetDataCall,addAssetDataCall,pushToHome,updateAssetDataCall,filterData,getCountry,deleteAsset,emptyState} from "../action/Action";
 import { connect } from 'react-redux'
 
 
 const assets_prop = (assets,filter_term) => {
         // console.log(assets)
+    if(assets===undefined)return []
         let searchTerm = new RegExp(filter_term,'i')
         let arrOfObj = Object.values(assets)
     // console.log(arrOfObj)
@@ -14,7 +15,8 @@ const assets_prop = (assets,filter_term) => {
 
 const country_prop = (countries) =>{
     // console.log(countries.length)
-    if(countries.length < 15) {
+    if(countries===undefined)return []
+    else if(countries.length < 15) {
         return countries
     }
     else{
@@ -46,7 +48,8 @@ const mapDispatchtoProps = (dispatch) => {
         updateAssetDataCall: (data)=>dispatch(updateAssetDataCall(data)),
         filterData: (data)=>dispatch(filterData(data)),
         getCountry: (data)=>dispatch(getCountry(data)),
-        deleteAsset: (data)=>dispatch(deleteAsset(data))
+        deleteAsset: (data)=>dispatch(deleteAsset(data)),
+        emptyState: ()=>dispatch(emptyState())
     }
 }
 

@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import SimpleMediaCard from './LoginCard'
+import {SubmissionError} from 'redux-form'
 
 const backGround ={
     backgroundColor:'black'
@@ -11,22 +12,28 @@ const divStyle = {
     transform: 'translateX(-50%) translateY(-50%)',
     border: '1px solid black',
 }
-    class Login extends Component{
 
+    class Login extends Component{
+    componentWillMount(){
+            if(localStorage.getItem('hr_auth_token')){
+                this.props.pushToHr()
+            }
+        }
         submit = (values) => {
-            console.log(values)
+
             this.props.apiCall(values);
+            console.log(localStorage.getItem('hr_auth_token'))
+            if(localStorage.getItem('hr_auth_token')===null){
+                    throw new SubmissionError({
+                        _error:'Invalid Username or Password'
+                    })
+            }
 
         }
-        //     componentDidMount(){
-        //     this.props.getLogin()
-        // }
         render(){
+
             return(
                 <div style={backGround}>
-                    {/*<h1>Login</h1>*/}
-                    {/*<h2>{"Data from the store: "+this.props.login}</h2>*/}
-                    {/*<LoginForm onSubmit={this.submit}/>*/}
                     <div style={divStyle}>
                     <SimpleMediaCard handleSubmit={this.submit}/>
                     </div>
