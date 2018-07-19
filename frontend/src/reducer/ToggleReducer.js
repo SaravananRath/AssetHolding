@@ -20,6 +20,46 @@ function normalizer(data){
     return obj
 }
 
+export const assetsById = (state={},action) => {
+    switch(action.type){
+        case 'ASSET_DATA_CALL': {
+            // const assetKey = action.data.map(asset => asset.id)
+            return ( normalizer(action.data))
+        }
+        case 'ADD_ASSET_DATA_CALL_SUCCESS': {
+            let newAssets = Object.values(state)
+            newAssets=newAssets.concat(action.data)
+            return (normalizer(newAssets))
+
+        }
+        case 'UPDATE_ASSET_DATA_SUCCESS':
+            return{
+                ...state,[action.id]:{
+                    ...state[action.id],
+                    count:action.data.count
+                }
+            }
+        case 'DELETE_ASSET':{
+            var _ = require('lodash');
+            const key= action.data.id
+            return (_.omit(state, key))
+        }
+        default: return state
+    }
+}
+
+export const assetsKey = (state=[],action)=>{
+    switch(action.type){
+        case 'ASSET_DATA_CALL':{
+            const assetKey = action.data.map(asset => asset.id)
+            return(assetKey)
+        }
+        default: return state
+    }
+}
+
+
+
 export const reducerFunc = (state=initialState, action) => {
     switch(action.type){
         case 'LOGIN_ERROR':
@@ -54,48 +94,18 @@ export const reducerFunc = (state=initialState, action) => {
                 ...state,
                 open:!state.open
             }
-        case 'ASSET_DATA_CALL': {
-            const assetKey = action.data.map(asset => asset.id)
-            return {
-                ...state,
-                assets:normalizer(action.data),
-                keys:assetKey
-
-            }
-        }
-
-        case 'ADD_ASSET_DATA_CALL_SUCCESS': {
-            // console.log(action.data)
-            let newAssets = Object.values(state.assets)
-            newAssets=newAssets.concat(action.data)
-            // console.log(newAssets)
-            return {...state,
-                    assets: normalizer(newAssets)
-                    }
-        }
 
 
-        case 'UPDATE_ASSET_DATA_SUCCESS': {
-            const asset = state.assets[action.id]
-            return {...state,
-                    assets: {
-                        ...state.assets, [action.id]: {
-                            ...asset,
-                            count: action.payload.count
-                        }
-                    }
-            }
-        }
+
+
+
+
 
         case 'FILTER_CALL':{
 
             return {...state,filterTerm:action.data}
         }
-        case 'DELETE_ASSET':{
-            var _ = require('lodash');
-            const key= action.data.id
-            return {...state,assets:_.omit(state.assets, key)}
-        }
+
         default:
             return state
     }

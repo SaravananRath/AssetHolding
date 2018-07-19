@@ -8,11 +8,9 @@ import {browserHistory} from 'react-router'
 import rootReducer from "./reducer/RootReducer";
 import App from './App';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { sessionService } from 'redux-react-session';
 
 const middlewareHistory = routerMiddleware(browserHistory)
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk,middlewareHistory),routerReducer))
-sessionService.initSessionService(store);
 const AppRedux = () => (
     <Provider store = {store} >
         <App/>

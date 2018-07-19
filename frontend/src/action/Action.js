@@ -45,7 +45,7 @@ export function updateAssetDataCallSuccess(data){
     return{
         type:'UPDATE_ASSET_DATA_SUCCESS',
         id:data.id,
-        payload: {count: data.count}
+        data
     }
 }
 export function addAssetDataCall(data){

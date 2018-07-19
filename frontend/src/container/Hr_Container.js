@@ -29,7 +29,7 @@ const mapStatetoProps = (state) => {
     return{
         hr: state.toggle_reducer.hr,
         open: state.toggle_reducer.open,
-        asset_prop: assets_prop(state.toggle_reducer.assets,state.toggle_reducer.filterTerm),
+        asset_prop: assets_prop(state.assetsById,state.toggle_reducer.filterTerm),
         countries: country_prop(state.toggle_reducer.countries),
         fetching:state.toggle_reducer.fetching,
         error:state.toggle_reducer.error
